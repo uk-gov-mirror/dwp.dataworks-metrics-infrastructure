@@ -16,7 +16,7 @@ resource "aws_lb" "monitoring_slave" {
 
 resource "aws_wafregional_web_acl_association" "lb_slave" {
   count        = local.is_management_env ? 0 : 1
-  resource_arn = aws_lb.monitoring[local.secondary_role_index].arn
+  resource_arn = aws_lb.monitoring_slave[local.secondary_role_index].arn
   web_acl_id   = module.waf.wafregional_web_acl_id
 }
 
