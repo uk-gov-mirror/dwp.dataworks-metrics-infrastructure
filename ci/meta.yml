@@ -32,7 +32,7 @@ meta:
       params:
         AWS_DEFAULT_REGION: ((dataworks.aws_region))
         GRAFANA_USER: ((dataworks-secrets.grafana_user_mgt_dev))
-        GRAFANA_PASSWORD: ((dataworks-secrets.grafana_password_mgt_dev)) 
+        GRAFANA_PASSWORD: ((dataworks-secrets.grafana_password_mgt_dev))
     terraform-bootstrap:
       task: terraform-bootstrap
       config:

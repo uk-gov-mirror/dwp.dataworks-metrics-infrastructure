@@ -14,6 +14,12 @@ resource "aws_lb" "monitoring_slave" {
   }
 }
 
+resource "aws_wafregional_web_acl_association" "lb_slave" {
+  count        = local.is_management_env ? 0 : 1
+  resource_arn = aws_lb.monitoring[local.secondary_role_index].arn
+  web_acl_id   = module.waf.wafregional_web_acl_id
+}
+
 resource "aws_security_group" "monitoring_slave" {
   count  = local.is_management_env ? 0 : 1
   vpc_id = module.vpc.outputs.vpcs[local.secondary_role_index].id
