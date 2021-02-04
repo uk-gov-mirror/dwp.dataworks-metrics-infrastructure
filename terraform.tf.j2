@@ -350,6 +350,7 @@ locals {
   cidr_block_internal_compute_vpc = local.environment != "management" && local.environment != "management-dev" ? local.cidr_block[local.environment].internal-compute-vpc : "0.0.0.0/0"
   cidr_block_ingest_vpc           = local.environment != "management" && local.environment != "management-dev" ? local.cidr_block[local.environment].ingest-vpc : "0.0.0.0/0"
   cidr_block_mon_master_vpc = local.environment == "management" || local.environment == "management-dev" ? [local.cidr_block[local.environment].mon-master-vpc] : ["0.0.0.0/0"]
+  cidr_block_mon_slave_vpc       = local.environment != "management" && local.environment != "management-dev" ? [local.cidr_block[local.environment].mon-slave-vpc] : ["0.0.0.0/0"]
 
   parent_domain_name = {
     management-dev = "mgt-dev.${var.parent_domain_name}"

@@ -6,7 +6,7 @@ resource "aws_internet_gateway" "igw_slave" {
 
 resource "aws_subnet" "public_slave" {
   count                = local.is_management_env ? 0 : local.zone_count
-  cidr_block           = cidrsubnet(local.cidr_block_mon_master_vpc[0], var.subnets.public.newbits, var.subnets.public.netnum + count.index)
+  cidr_block           = cidrsubnet(local.cidr_block_mon_slave_vpc[0], var.subnets.public.newbits, var.subnets.public.netnum + count.index)
   vpc_id               = module.vpc.outputs.vpcs[local.secondary_role_index].id
   availability_zone_id = data.aws_availability_zones.current.zone_ids[count.index]
   tags                 = merge(local.tags, { Name = "${var.name}-${var.secondary}-public-${local.zone_names[count.index]}" })
