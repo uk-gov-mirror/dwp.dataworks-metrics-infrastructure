@@ -192,7 +192,7 @@ resource "aws_ecs_service" "prometheus" {
 
 resource "aws_service_discovery_private_dns_namespace" "monitoring" {
   name = "${local.environment}.services.${var.parent_domain_name}"
-  vpc  = module.vpc.outputs.vpcs[0].id
+  vpc  = module.vpc.outputs.vpcs[local.secondary_role_index].id
   tags = merge(local.tags, { Name = var.name })
 }
 
