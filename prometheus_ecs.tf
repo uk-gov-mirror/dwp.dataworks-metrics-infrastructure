@@ -176,6 +176,12 @@ resource "aws_ecs_service" "prometheus" {
     subnets         = module.vpc.outputs.private_subnets[local.secondary_role_index]
   }
 
+  load_balancer {
+    target_group_arn = aws_lb_target_group.prometheus[local.secondary_role_index].arn
+    container_name   = "prometheus"
+    container_port   = var.prometheus_port
+  }
+
   service_registries {
     registry_arn   = aws_service_discovery_service.prometheus.arn
     container_name = "prometheus"
