@@ -3,7 +3,7 @@ resource "aws_lb" "monitoring_slave" {
   name               = "${var.name}-${var.secondary}"
   internal           = false
   load_balancer_type = "application"
-  subnets            = aws_subnet.public.*.id
+  subnets            = aws_subnet.public_slave.*.id
   security_groups    = [aws_security_group.monitoring_slave[0].id]
   tags               = merge(local.tags, { Name = "${var.name}-${var.secondary}-lb" })
 
