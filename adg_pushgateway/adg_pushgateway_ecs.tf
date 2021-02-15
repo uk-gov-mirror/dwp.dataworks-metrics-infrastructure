@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "adg_pushgateway" {
 
 data "template_file" "adg_pushgateway_definition" {
   count    = local.is_management_env ? 0 : 1
-  template = file("${path.module}/container_definition.tpl")
+  template = file("../${path.module}/container_definition.tpl")
   vars = {
     name          = "adg-pushgateway"
     group_name    = "pushgateway"

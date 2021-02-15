@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "grafana" {
 
 data "template_file" "grafana_definition" {
   count    = local.is_management_env ? 1 : 0
-  template = file("${path.module}/container_definition.tpl")
+  template = file("../${path.module}/container_definition.tpl")
   vars = {
     name          = "grafana"
     group_name    = "grafana"

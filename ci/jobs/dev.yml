@@ -11,3 +11,29 @@ jobs:
       - .: (( inject meta.plan.terraform-apply ))
 
       - .: (( inject meta.plan.terraform-plan ))
+
+  - name: development-alertmanager
+    plan:
+      - get: dw-al2-ecs-ami
+      - get: dataworks-metrics-infrastructure-alertmanager
+        trigger: true
+      - get: dataworks-dashboards
+
+      - .: (( inject meta.plan.terraform-bootstrap ))
+
+      - .: (( inject meta.plan.terraform-apply ))
+
+      - .: (( inject meta.plan.terraform-plan ))
+
+  - name: development-grafana
+    plan:
+      - get: dw-al2-ecs-ami
+      - get: dataworks-metrics-infrastructure-grafana
+        trigger: true
+      - get: dataworks-dashboards
+
+      - .: (( inject meta.plan.terraform-bootstrap ))
+
+      - .: (( inject meta.plan.terraform-apply ))
+
+      - .: (( inject meta.plan.terraform-plan ))

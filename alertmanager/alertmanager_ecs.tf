@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "alertmanager" {
 
 data "template_file" "alertmanager_definition" {
   count    = local.is_management_env ? 1 : 0
-  template = file("${path.module}/container_definition.tpl")
+  template = file("../${path.module}/container_definition.tpl")
   vars = {
     name          = "alertmanager"
     group_name    = "alertmanager"
