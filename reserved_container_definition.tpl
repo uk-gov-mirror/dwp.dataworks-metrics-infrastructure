@@ -62,5 +62,7 @@
         value = variable.value
       }
     ]
-  ))}
+  ))},
+
+  "dockerLabels": ${labels}
 }

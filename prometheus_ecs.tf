@@ -74,7 +74,11 @@ data "template_file" "prometheus_definition" {
         "name" : "LOG_LEVEL",
         "value" : "debug"
       }
-    ])
+    ]),
+
+    labels = jsonencode({
+      "ECS_PROMETHEUS_EXPORTER_PORT": tostring(var.prometheus_port)
+    })
   }
 }
 
@@ -111,7 +115,9 @@ data "template_file" "ecs_service_discovery_definition" {
         "name" : "AWS_DEFAULT_REGION",
         "value" : "eu-west-2"
       }
-    ])
+    ]),
+
+    labels = jsonencode({})
   }
 }
 
@@ -160,7 +166,9 @@ data "template_file" "thanos_receiver_prometheus_definition" {
         "name" : "LOG_LEVEL",
         "value" : "debug"
       }
-    ])
+    ]),
+
+    labels = jsonencode({})
   }
 }
 
